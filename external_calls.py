@@ -34,10 +34,11 @@ async def main():
     sem = asyncio.Semaphore(IN_FLIGHT)
     limits = httpx.Limits(max_keepalive_connections=IN_FLIGHT, max_connections=IN_FLIGHT, keepalive_expiry=10)
     client = httpx.AsyncClient(limits=limits, verify=False)
-    start_time = time.perf_counter()
-    await asyncio.gather(*[asyncio.ensure_future(bound_fetch(sem,client,test)) for test in queries], return_exceptions=True)
-    end_time = time.perf_counter()
-    print(f"{len(queries)} embeddings done in {round(end_time-start_time,2)} seconds.")
+    for i in range(10):
+        start_time = time.perf_counter()
+        await asyncio.gather(*[asyncio.ensure_future(bound_fetch(sem,client,test)) for test in queries], return_exceptions=True)
+        end_time = time.perf_counter()
+        print(f"{len(queries)} embeddings done in {round(end_time-start_time,2)} seconds.")
 
 
 if __name__=='__main__':
