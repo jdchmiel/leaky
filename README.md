@@ -103,5 +103,5 @@ you should see in your other terminal `docker stats` shoing memory leak no matte
 
 # Coming soon
 - completing the run_st wrapper to execute the non converted model and see the leak / cores status of it
-
+- test using the nodejs transformers.js method to wrap a model ?
 
