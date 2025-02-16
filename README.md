@@ -3,7 +3,7 @@ minimum reproduction of memory leak
 
 
 ## instructions
-after cloning this repo, copy your favorite transfoemrs model from hugging face into a local models/ folder within the repo.
+after cloning this repo, copy your favorite transformers model from hugging face into a local models/ folder within the repo. (https://huggingface.co/dunzhang/stella_en_400M_v5/tree/main?clone=true)
 ```
 git clone https://github.com/jdchmiel/leaky.git
 cd leaky
@@ -105,3 +105,14 @@ you should see in your other terminal `docker stats` shoing memory leak no matte
 - completing the run_st wrapper to execute the non converted model and see the leak / cores status of it
 - test using the nodejs transformers.js method to wrap a model ?
 
+=======
+cd model
+brew install git-lfs
+git lfs install
+git clone https://huggingface.co/dunzhang/stella_en_400M_v5 .
+cd ..
+```
+Next build your docker image, and name it for convenience
+```
+docker buildx build -f Dockerfile -t leaky:latest .
+>>>>>>> Stashed changes
